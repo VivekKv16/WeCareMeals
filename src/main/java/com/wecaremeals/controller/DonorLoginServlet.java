@@ -27,6 +27,7 @@ public class DonorLoginServlet extends HttpServlet {
         long phone = Long.parseLong(req.getParameter("phone"));
         String password=req.getParameter("password");
         System.out.println("DonorLoginServlet");
+        System.out.println("donorrrr");
         Donor donor=null;
 
         try {
