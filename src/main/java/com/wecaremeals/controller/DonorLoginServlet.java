@@ -26,7 +26,7 @@ public class DonorLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long phone = Long.parseLong(req.getParameter("phone"));
         String password=req.getParameter("password");
-
+        System.out.println("DonorLoginServlet");
         Donor donor=null;
 
         try {
