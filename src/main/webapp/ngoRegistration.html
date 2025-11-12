@@ -2,9 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeCareMeals | NGO Registration</title>
 </head>
 <body>
+
+<h2>NGO Registration - WeCareMeals</h2>
+<p>Partner with us to serve communities and reduce hunger!</p>
+
+<form action="ngoRegister" method="post">
+
+    <label for="ngoId">NGO ID:</label>
+    <input type="number" id="ngoId" name="ngoId" required><br><br>
+
+    <label for="ngoName">NGO Name:</label><br>
+    <input type="text" id="ngoName" name="name" required><br><br>
+
+    <label for="phone">Contact Number:</label><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address" rows="3" cols="30" required></textarea><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" minlength="6" required><br><br>
+
+    <input type="submit" value="Register NGO">
+</form>
+
+<p>Already registered? <a href="ngoLogin.html">Login here</a></p>
 
 </body>
 </html>
