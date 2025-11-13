@@ -1,10 +1,7 @@
 package com.wecaremeals.controller;
 
-import com.wecaremeals.dao.DonorDAO;
-import com.wecaremeals.dao.DonorDAOImpl;
 import com.wecaremeals.dao.NgoDAO;
 import com.wecaremeals.dao.NgoDAOImpl;
-import com.wecaremeals.dto.Donor;
 import com.wecaremeals.dto.Ngo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,11 +13,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/ngoRegister")
-public class ngoRegistrationServlet extends HttpServlet {
+public class NgoRegistrationServlet extends HttpServlet {
 
     NgoDAO ndao=null;
 
-    public ngoRegistrationServlet() {
+    public NgoRegistrationServlet() {
         ndao=new NgoDAOImpl();
     }
 

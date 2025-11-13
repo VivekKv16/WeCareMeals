@@ -5,6 +5,7 @@ import com.wecaremeals.util.DbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NgoDAOImpl implements NgoDAO {
@@ -29,5 +30,28 @@ public class NgoDAOImpl implements NgoDAO {
         }
         return false;
 
+    }
+
+    @Override
+    public Ngo loginNgo(long phone, String password) throws SQLException, ClassNotFoundException {
+        con=DbConnection.getConnection();
+        String sqry ="select * from ngo where phone=? and password=?";
+        Ngo ngo= null;
+        PreparedStatement ps = con.prepareStatement(sqry);
+        ps.setLong(1,phone);
+        ps.setString(2,password);
+
+        ResultSet rs =ps.executeQuery();
+        if(rs.next()){
+            ngo= new Ngo();
+            ngo.setNgoId(rs.getInt("ngoId"));
+            ngo.setName(rs.getString("name"));
+            ngo.setPhone(rs.getLong("phone"));
+            ngo.setPassword(rs.getString("password"));
+            ngo.setEmail(rs.getString("email"));
+            ngo.setAddress(rs.getString("address"));
+        }
+
+        return ngo;
     }
 }

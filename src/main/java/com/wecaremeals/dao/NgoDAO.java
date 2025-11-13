@@ -5,6 +5,8 @@ import com.wecaremeals.dto.Ngo;
 import java.sql.SQLException;
 
 public interface NgoDAO {
-    boolean registerNgo(Ngo ngo) throws SQLException, ClassNotFoundException;
+    public boolean registerNgo(Ngo ngo) throws SQLException, ClassNotFoundException;
+
+    public Ngo loginNgo(long number,String password) throws SQLException, ClassNotFoundException;
 
 }
