@@ -29,7 +29,6 @@ public class NgoDAOImpl implements NgoDAO {
             return true;
         }
         return false;
-
     }
 
     @Override
@@ -51,7 +50,6 @@ public class NgoDAOImpl implements NgoDAO {
             ngo.setEmail(rs.getString("email"));
             ngo.setAddress(rs.getString("address"));
         }
-
         return ngo;
     }
 }

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class NgoLoginServlet extends HttpServlet {
 
@@ -20,16 +21,19 @@ public class NgoLoginServlet extends HttpServlet {
         ndao=new NgoDAOImpl();
     }
 
-
-
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long phone= Long.parseLong(req.getParameter("phone"));
         String password=req.getParameter("password");
         Ngo ngo=null;
 
-        ngo=ndao.loginNgo(phone, password);
+        try {
+            ngo=ndao.loginNgo(phone, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         if(ngo!=null){
             HttpSession session= req.getSession();
