@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NgoDAOImpl implements NgoDAO {
 
@@ -51,4 +53,26 @@ public class NgoDAOImpl implements NgoDAO {
         }
         return ngo;
     }
+
+    @Override
+    public List<Ngo> getNgoByAddress(String address) throws SQLException, ClassNotFoundException {
+        con = DbConnection.getConnection();
+
+        String sql = "SELECT * FROM ngo WHERE address LIKE ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, "%" + address + "%");
+
+        ResultSet rs = ps.executeQuery();
+        List<Ngo> ngoList = new ArrayList<>();
+
+        while (rs.next()) {
+            Ngo ngo = new Ngo();
+            ngo.setNgoId(rs.getInt("ngoId"));
+            ngo.setName(rs.getString("name"));
+            ngo.setAddress(rs.getString("address"));
+            ngoList.add(ngo);
+        }
+        return ngoList;
+    }
+
 }

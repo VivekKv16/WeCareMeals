@@ -1,4 +1,6 @@
 <%@ page import="com.wecaremeals.dto.Donor" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.wecaremeals.dto.Ngo" %>
 <%@ page session="true" %>
 
 <%
@@ -61,16 +63,51 @@
     <h2>Welcome, <%= donorName %></h2>
 
     <form action="donateFood" method="post">
+
         <input type="hidden" name="donorID" value="<%= donorID %>">
 
-        <label>Food Item</label>
-        <input type="text" name="foodItem" required>
+        <h3>Select NGO near you:</h3>
+        <select name="ngoID" required>
+            <%
+                List<Ngo> ngoList = (List<Ngo>) request.getAttribute("ngoList");
+                if (ngoList != null) {
+                    for (Ngo ngo : ngoList) {
+            %>
+                <option value="<%= ngo.getNgoId() %>">
+                    <%= ngo.getName() %> - <%= ngo.getAddress() %>
+                </option>
+            <%
+                    }
+                }
+            %>
+        </select>
 
-        <label>Quantity</label>
-        <input type="text" name="quantity" required>
+        <h3>Food Items</h3>
 
+        <div id="items">
+            <div>
+                <input type="text" name="foodItem" placeholder="Food item" required>
+                <input type="text" name="quantity" placeholder="Quantity" required>
+            </div>
+        </div>
+
+        <button type="button" onclick="addItem()">+ Add More</button>
+
+        <br><br>
         <button type="submit">Donate Food</button>
     </form>
+
+    <script>
+        function addItem() {
+            let div = document.createElement("div");
+            div.innerHTML = `
+                <input type="text" name="foodItem" placeholder="Food item" required>
+                <input type="text" name="quantity" placeholder="Quantity" required>
+            `;
+            document.getElementById("items").appendChild(div);
+        }
+    </script>
+
 
 </div>
 

@@ -16,21 +16,25 @@ public class DonateFoodServlet extends HttpServlet {
             throws ServletException, IOException {
 
         int donorID = Integer.parseInt(request.getParameter("donorID"));
-        String foodItem = request.getParameter("foodItem");
-        String quantity = request.getParameter("quantity");
+        int ngoID = Integer.parseInt(request.getParameter("ngoID"));
+
+        String[] items = request.getParameterValues("foodItem");
+        String[] qty = request.getParameterValues("quantity");
 
         try (Connection conn = DbConnection.getConnection()) {
 
-            String sql = "INSERT INTO food_donations (donorID, foodItem, quantity) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO food_donations (donorID, ngoID, foodItem, quantity) VALUES (?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setInt(1, donorID);
-            ps.setString(2, foodItem);
-            ps.setString(3, quantity);
+            for (int i = 0; i < items.length; i++) {
+                ps.setInt(1, donorID);
+                ps.setInt(2, ngoID);
+                ps.setString(3, items[i]);
+                ps.setString(4, qty[i]);
+                ps.executeUpdate();
+            }
 
-            ps.executeUpdate();
-
-            response.sendRedirect("donorDashboard.jsp?success=true");
+            response.sendRedirect("loadNgo?success=true");
 
         } catch (Exception e) {
             e.printStackTrace();
