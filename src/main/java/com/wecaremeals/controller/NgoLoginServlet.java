@@ -44,7 +44,5 @@ public class NgoLoginServlet extends HttpServlet {
             req.getRequestDispatcher("ngoDashboard.jsp");
         }
 
-
-
     }
 }

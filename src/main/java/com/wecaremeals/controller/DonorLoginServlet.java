@@ -38,12 +38,15 @@ public class DonorLoginServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        if(donor !=null){
-            HttpSession session=req.getSession();
+        if(donor != null){
+            HttpSession session = req.getSession();
 
-            session.setAttribute("donor",donor);
-            req.getRequestDispatcher("donorDashboard.jsp").forward(req,resp);
+            session.setAttribute("donor", donor);
+            session.setAttribute("address", donor.getAddress());   // ⭐ IMPORTANT
+
+            req.getRequestDispatcher("donorDashboard.jsp").forward(req, resp);
         }
+
 
     }
 }

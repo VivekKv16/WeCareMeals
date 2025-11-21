@@ -52,4 +52,15 @@ public class DonorDAOImpl implements com.wecaremeals.dao.DonorDAO{
         }
         return donor;
     }
+
+    @Override
+    public void updateAddress(int donorID, String address) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE donor SET address=? WHERE donorID=?";
+        con = DbConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, address);
+        ps.setInt(2, donorID);
+        ps.executeUpdate();
+    }
+
 }

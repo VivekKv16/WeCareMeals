@@ -23,7 +23,6 @@ public class NgoDAOImpl implements NgoDAO {
         ps.setString(4,ngo.getPassword());
         ps.setString(5, ngo.getEmail());
         ps.setString(6,ngo.getAddress());
-
         int update = ps.executeUpdate();
         if(update>0){
             return true;
