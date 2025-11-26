@@ -34,7 +34,6 @@ public class LoadNgoServlet extends HttpServlet {
         try {
             List<Ngo> ngoList = ngoDAO.getNgoByAddress(donor.getAddress());
             req.setAttribute("ngoList", ngoList);
-
             req.getRequestDispatcher("donorDashboard.jsp").forward(req, resp);
 
         } catch (Exception e) {
@@ -42,3 +41,4 @@ public class LoadNgoServlet extends HttpServlet {
         }
     }
 }
+

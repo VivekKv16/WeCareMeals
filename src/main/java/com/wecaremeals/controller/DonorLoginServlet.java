@@ -40,13 +40,16 @@ public class DonorLoginServlet extends HttpServlet {
 
         if(donor != null){
             HttpSession session = req.getSession();
-
             session.setAttribute("donor", donor);
-            session.setAttribute("address", donor.getAddress());   // ⭐ IMPORTANT
+            session.setAttribute("address", donor.getAddress());
+            resp.sendRedirect("loadNgo");
+        }
 
-            req.getRequestDispatcher("donorDashboard.jsp").forward(req, resp);
+//            req.getRequestDispatcher("donorDashboard.jsp").forward(req, resp);
+//            resp.sendRedirect("loadNgo");
+
         }
 
 
     }
-}
+
