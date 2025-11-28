@@ -1,4 +1,4 @@
-<%@ page import="com.wecaremeals.dto.Donor" %>
+<%@page import="com.wecaremeals.dto.Donor"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.wecaremeals.dto.Ngo" %>
 <%@ page session="true" %>

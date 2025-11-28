@@ -37,8 +37,7 @@ public class NgoLoginServlet extends HttpServlet {
         if (ngo != null) {
             HttpSession session = req.getSession();
             session.setAttribute("ngo", ngo);
-
-            resp.sendRedirect("ngoDashboard.jsp"); // FIXED
+            resp.sendRedirect("ngodashboard");
         } else {
             resp.sendRedirect("ngoLogin.html?error=true");
         }
